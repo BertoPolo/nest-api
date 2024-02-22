@@ -16,15 +16,16 @@ export class AuthService {
         email: dto.email,
         hash, // why this is not password : hash ????
       },
-      select: {
-        // inside here you choose what you want to return. cause for eg, you dont wnat to return the hash
-        id: true,
-        email: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-      // instead of select, you can write : delete user.hash  and is quicker
+      // select: {
+      //   // inside here you choose what you want to return. cause for eg, you dont wnat to return the hash
+      //   id: true,
+      //   email: true,
+      //   createdAt: true,
+      //   updatedAt: true,
+      // },
     });
+    // instead of select:{}, you can write : delete user.hash  and is quicker
+    delete user.hash;
 
     // return the saved user
     return user;
