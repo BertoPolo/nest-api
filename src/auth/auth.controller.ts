@@ -1,14 +1,17 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { AuthDto } from './dto';
 
-@Controller('auth') //here you define the main endpoint name
+@Controller('auth') //here you define the main route name
 export class AuthController {
   constructor(private authService: AuthService) {}
+  // here you define your endpoints
 
   @Post('signup') // /auth/signup
-  signup() {
-    // return 'I am signed up';
-    return this.authService.signup();
+  signup(@Body() dto: AuthDto) {
+    // dto is the equivalent of req.body
+    // console.log({ dto });
+    return this.authService.signup(dto);
   }
 
   @Post('signin') // /auth/signin
